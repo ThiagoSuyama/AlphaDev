@@ -1,0 +1,25 @@
+{
+  "usuario": [
+    {
+      "id": 1,
+      "nome": "Mariana",
+      "usuario": "mariss",
+      "senha": "123456",
+      "foto": "",
+      "tipo": ""
+    },
+    {
+      "nome": "Mariele",
+      "usuario": "mariel",
+      "senha": "121212",
+      "id": 2
+    },
+    {
+      "nome": "Bruna Silva",
+      "usuario": "bruna",
+      "senha": "123123",
+      "tipo": "normal",
+      "id": 3
+    }
+  ]
+}
