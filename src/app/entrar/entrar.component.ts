@@ -23,17 +23,19 @@ export class EntrarComponent implements OnInit {
   }
 
   entrar(){
+    this.router.navigate(['/home'])
     
-    this.auth.entrar(this.userLogin.usuario).subscribe((resp: User)=>{
-      console.log(resp)
-      this.userLogin = resp
-      this.router.navigate(['/home'])
-    }, erro =>{
-      if(erro.status == 500){
-        alert('Usuário ou senha estão incorretos!')
-      }
+    //Precisa adicionar o backEnd para login
+    // this.auth.entrar(this.userLogin.usuario).subscribe((resp: User)=>{
+    //   console.log(resp)
+    //   this.userLogin = resp
+    //   this.router.navigate(['/home'])
+    // }, erro =>{
+    //   if(erro.status == 500){
+    //     alert('Usuário ou senha estão incorretos!')
+    //   }
 
-    })
+    // })
 
   }
 
