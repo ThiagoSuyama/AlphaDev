@@ -1,5 +1,6 @@
 package br.com.istorage.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,17 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq_id")
 	@SequenceGenerator(sequenceName = "usuario_seq_id", name = "usuario_seq_id", allocationSize = 1)
 	private int id;
+	
+	@Column(name = "USERNAME")
 	private String username;
+	
+	@Column(name = "NOME")
 	private String nome;
+	
+	@Column(name = "SOBRENOME")
 	private String sobrenome;
+	
+	@Column(name = "SENHA")
 	private String senha;
 
 	public int getId() {
