@@ -1,0 +1,50 @@
+<div class="container-fluid" id="bg">
+
+    <div class="row d-flex align-items-center">
+
+        <div class="col-md-6" id="img-bg"></div>
+
+        <div class="col-md-6 mt-5 mb-5">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-10">
+
+                    <h1 class="text-center">Cadastro de Fornecedor</h1>
+
+                    <form [formGroup]="formFornecedor">
+                        <div class="form-group mt-3">
+                            <label for="nome">Nome do fornecedor</label>
+                            <input class="form-control" type="text" name="nome" id="nome" placeholder="Digite seu nome" formControlName ="nomeFornecedor">
+                        </div>
+                        
+                        <div class="form-group mt-3">
+                            <label for="CNPJ">CNPJ</label>
+                            <input  class="form-control" type="text" name="CNPJ" id="CNPJ" placeholder="Digite seu CNPJ" formControlName = "cnpj">
+                        </div>
+    
+                        <div class="form-group mt-3">
+                            <label for="ie">Inscrição estadual</label>
+                            <input  class="form-control" type="text" name="ie" id="ie" placeholder="Digite sua inscrição estadual" formControlName="inscricaoEsdadual">
+                        </div>
+    
+                        <div class="form-group mt-3">
+                            <label for="obs">Observações</label>
+                            <textarea class="form-control" type="password" name="obs" id="obs" placeholder="Digite suas Observações" formControlName="observacao"></textarea>
+                        </div>
+       
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-danger" routerLink='/home'>Cancelar</button>
+                            <button type="submit" class="btn btn-success" (click)='cadastrar()' >Cadastrar</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

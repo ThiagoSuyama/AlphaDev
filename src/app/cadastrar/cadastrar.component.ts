@@ -32,7 +32,8 @@ export class CadastrarComponent implements OnInit {
   
   cadastrar() {
     
-
+    console.log('this.user', this.user)
+    //Precisa adicionar o Backend
     if(this.user.senha != this.confirmarSenha) {
       alert('As senhas estão incorretas.')
     } else {
