@@ -1,9 +1,8 @@
+import { ToastrService } from 'ngx-toastr';
 import { User } from './../model/User';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
-
-
 @Component({
   selector: 'app-entrar',
   templateUrl: './entrar.component.html',
@@ -15,7 +14,9 @@ export class EntrarComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private alert : ToastrService,
+
   ) { }
 
   ngOnInit() {
@@ -23,19 +24,15 @@ export class EntrarComponent implements OnInit {
   }
 
   entrar(){
-    this.router.navigate(['/home'])
-    
-    //Precisa adicionar o backEnd para login
-    // this.auth.entrar(this.userLogin.usuario).subscribe((resp: User)=>{
-    //   console.log(resp)
-    //   this.userLogin = resp
-    //   this.router.navigate(['/home'])
-    // }, erro =>{
-    //   if(erro.status == 500){
-    //     alert('Usuário ou senha estão incorretos!')
-    //   }
+    this.auth.entrar(this.userLogin.usuario).subscribe((resp: User)=>{
+      this.userLogin = resp
+      this.router.navigate(['/home'])
+      this.alert.success('Bem Vindo','Sucesso')
+    }, erro =>{
+      console.warn('erro',erro)
+      this.alert.error('Usuário ou senha estão incorretos!','Falha')
 
-    // })
+    })
 
   }
 

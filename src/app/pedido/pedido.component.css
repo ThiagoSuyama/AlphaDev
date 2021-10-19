@@ -1,0 +1,21 @@
+/* #bg{
+  background-color: rgb(240, 142, 112);
+}
+
+#img-bg{
+  background-image: url('../../assets/imagens/Sushi-cook-amico.png');
+
+  min-height: 789px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.marginTop{
+  margin-top: 30px;
+}
+
+.space{
+  margin: 30px;
+}

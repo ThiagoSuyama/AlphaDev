@@ -5,6 +5,13 @@ export class User{
     public usuario: string
     public senha: string
     public documento: string
-    
+}
 
+export interface IUser{
+     id: number
+     nome: string
+     sobrenome: string
+     usuario: string
+     senha: string
+     documento: string
 }

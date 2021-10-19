@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Iproduto } from '../model/Produto'
+import { IProduto } from '../model/Produto'
 import { ProdutoService } from '../service/produto.service'
 
 @Component({
@@ -28,8 +28,8 @@ export class ProdutoComponent implements OnInit {
   }
 
   cadastrar(): void{
-    const body:Iproduto  = Object.assign({}, this.formProduto.value)
-    this.produtoService.cadastrar(body).subscribe((data:Iproduto)=>{
+    const body:IProduto  = Object.assign({}, this.formProduto.value)
+    this.produtoService.cadastrar(body).subscribe((data:IProduto)=>{
       console.log('cadastrado com sucesso', data)
     })
     console.log('body', body)

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Iproduto } from '../model/Produto'
+import { IProduto } from '../model/Produto'
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ProdutoService {
 
   ) { }
 
-  cadastrar(produto: Iproduto): Observable<Iproduto>{
-    return this.http.post<Iproduto>('http://localhost:8080/produto', produto)
+  cadastrar(produto: IProduto): Observable<IProduto>{
+    return this.http.post<IProduto>('http://localhost:8080/produto', produto)
   }
   
 }
