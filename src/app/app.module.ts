@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PedidoComponent } from './pedido/pedido.component';
+import { RecebidosComponent } from './recebidos/recebidos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     FornecedorComponent,
     ProdutoComponent,
     PedidoComponent,
+    RecebidosComponent,
   ],
   imports: [
     BrowserModule,

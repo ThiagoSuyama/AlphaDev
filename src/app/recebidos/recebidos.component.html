@@ -1,0 +1,64 @@
+<div class="container-fluid" id="bg">
+
+    <div class="row d-flex align-items-center">
+
+        <div class="col-md-6" id="img-bg"></div>
+
+        <div class="col-md-6 mt-5 mb-5">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-10">
+
+                    <h1 class="text-center">Produtos recebidos</h1>
+
+                    <form [formGroup]="formRecebidos">
+                        <div class="form-group mt-3">
+                            <label for="numeroPedido">Pedido</label>
+                            <ng-multiselect-dropdown
+                              name='numeroPedido'
+                              [placeholder]="'Selecione o número do pedido'"
+                              [settings]="dropdownSettingsSigle"
+                              [data]="listaPedido"
+                              formControlName="numeroPedido"
+                            ></ng-multiselect-dropdown>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="descricaoProduto">Produto recebido</label>
+                            <ng-multiselect-dropdown
+                              name='descricaoProduto'
+                              [placeholder]="'Selecione o produto'"
+                              [settings]="dropdownSettingsSigle"
+                              [data]="listaProduto"
+                              formControlName="descricaoProduto"
+                            ></ng-multiselect-dropdown>
+                        </div>
+                          <div class="form-group mt-3">
+                            <label for="quantidade">Quantidade</label>
+                            <input class="form-control" type="number" name="quantidade" id="quantidade" min="1"  placeholder="Digite a quantidade" formControlName = "quantidade">
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="data">Data</label>
+                            <input id="date" type="date" name="data" id="data" placeholder="Digite a data de recebimento" formControlName = "data">
+                          </div>
+                          <div class="form-group mt-3">
+                            <label for="validade">Validade</label>
+                            <input id="date" type="date" name="validade" id="validade" placeholder="Digite a data de validade do produto" formControlName = "validade">
+                          </div>
+                          
+            
+                        <div class="d-flex justify-content-center">
+                            <!-- <button type="submit" class="btn btn-danger space" routerLink='/home'>Cancelar</button> -->
+                            <button type="submit" class="btn btn-success space" (click)='cadastrar()' >Confirmar recebimento</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
