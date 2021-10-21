@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { RecebidosComponent } from './recebidos/recebidos.component';
+import { SaidaComponent } from './saida/saida.component';
 
 const routes: Routes = [
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'fornecedor', component: FornecedorComponent},
   {path: 'produto', component: ProdutoComponent},
   {path: 'pedido', component: PedidoComponent},
-  {path: 'recebidos', component: RecebidosComponent}
+  {path: 'recebidos', component: RecebidosComponent},
+  {path: 'saida', component: SaidaComponent}
 
 ];
 
