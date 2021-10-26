@@ -20,12 +20,12 @@
                         
                         <div class="form-group mt-3">
                             <label for="CNPJ">CNPJ</label>
-                            <input  class="form-control" type="text" name="CNPJ" id="CNPJ" placeholder="Digite seu CNPJ" formControlName = "cnpj">
+                            <input mask='00.000.000/0000-00' class="form-control" type="text" name="CNPJ" id="CNPJ" placeholder="Digite seu CNPJ" formControlName = "cnpj">
                         </div>
     
                         <div class="form-group mt-3">
                             <label for="ie">Inscrição estadual</label>
-                            <input  class="form-control" type="text" name="ie" id="ie" placeholder="Digite sua inscrição estadual" formControlName="inscricaoEsdadual">
+                            <input mask='0*'  class="form-control" type="text" name="ie" id="ie" placeholder="Digite sua inscrição estadual" formControlName="inscricaoEsdadual">
                         </div>
     
                         <div class="form-group mt-3">
@@ -34,8 +34,8 @@
                         </div>
        
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-danger" routerLink='/home'>Cancelar</button>
-                            <button type="submit" class="btn btn-success" (click)='cadastrar()' >Cadastrar</button>
+                            <button type="submit" class="btn btn-danger space" routerLink='/home'>Cancelar</button>
+                            <button type="submit" class="btn btn-success space" (click)='cadastrar()' >Cadastrar</button>
                         </div>
 
                     </form>

@@ -3,11 +3,15 @@
 }
 
 #img-bg{
-    background-image: url('../../assets/imagens/Sushi-cook-amico.png');
+    background-image: url('../../assets/imagens/Supermarket-workers-pana.png');
 
     min-height: 789px;
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.space{
+    margin: 30px;
 }
