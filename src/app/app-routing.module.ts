@@ -8,6 +8,8 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { HomeComponent } from './home/home.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { RecebidosComponent } from './recebidos/recebidos.component';
+import { SaidaComponent } from './saida/saida.component';
 
 const routes: Routes = [
 
@@ -29,6 +31,12 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {path: 'pedido', component: PedidoComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'recebidos', component: RecebidosComponent, 
+    canActivate:[AuthGuard]
+  },
+  {path: 'saida', component: SaidaComponent,
     canActivate:[AuthGuard]
   }
 
