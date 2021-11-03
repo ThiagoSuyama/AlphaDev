@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { RodapeModule } from './componentes/rodape/rodape.module';
 import { CabecalhoModule } from './componentes/cabecalho/cabecalho.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     ToastrModule.forRoot(), 
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
