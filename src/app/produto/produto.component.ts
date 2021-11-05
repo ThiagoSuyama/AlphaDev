@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { IProduto } from '../model/Produto'
@@ -19,6 +20,8 @@ export class ProdutoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private produtoService : ProdutoService,
+    private alert : ToastrService,
+
   ) { 
     this.formProduto = this.fb.group(this.formFields)
 
@@ -30,9 +33,11 @@ export class ProdutoComponent implements OnInit {
   cadastrar(): void{
     const body:IProduto  = Object.assign({}, this.formProduto.value)
     this.produtoService.cadastrar(body).subscribe((data:IProduto)=>{
-      console.log('cadastrado com sucesso', data)
+      this.alert.success('Produto Cadastrado','Sucesso!')
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
     })
-    console.log('body', body)
   }
 
 }

@@ -1,48 +1,55 @@
-<div class="container-fluid" id="bg">
-  <div class="row d-flex align-items-center">
-    <div class="col-md-12" >
+<div id="bg">
+  <div class="container" style="background-color: white;">
+    <div class="row d-flex align-items-center">
+      <div class="col-md-12" >
         <h1 class="text-center marginTop">Cadastro de Pedido</h1>
         <form [formGroup]="formPedido">
-            <div class="form-group mt-3">
-                <label for="descricaoProduto">Selecione o Produto</label>
-                <ng-multiselect-dropdown
-                  name='descricaoProduto'
-                  [placeholder]="'Selecione o produto'"
-                  [settings]="dropdownSettingsSigle"
-                  [data]="listaProduto"
-                  formControlName="descricaoProduto"
-                ></ng-multiselect-dropdown>
-            </div>
-            <div class="form-group mt-3">
-                <label for="fornecedor">Seleciona um fornecedor</label>
-                <ng-multiselect-dropdown
-                  name='fornecedor'
-                  [placeholder]="'Selecione o fornecedor'"
-                  [settings]="dropdownSettingsSigle"
-                  [data]="listaFornecedor"
-                  formControlName="fornecedor"
-                ></ng-multiselect-dropdown>
-              </div>
-              <div class="form-group mt-3">
-                <label for="quantidade">Quantidade</label>
-                <input class="form-control" type="number" name="quantidade" id="quantidade" min="1"  placeholder="Digite a quantidade" formControlName = "quantidade">
-              </div>
-              <div class="form-group mt-3">
-                <label for="unidadeMedida">Unidade de medida</label>
-                <ng-multiselect-dropdown
-                  name='unidadeMedida'
-                  [placeholder]="'Selecione uma unidade de medida'"
-                  [settings]="dropdownSettingsSigle"
-                  [data]="listaUnidadeMedida"
-                  formControlName="unidadeMedida"
-                ></ng-multiselect-dropdown>
-              </div>
-
+          <div class="form-group mt-3">
+              <label for="descricaoProduto">Selecione o Produto</label>
+              <ng-multiselect-dropdown
+                name='descricaoProduto'
+                [placeholder]="'Selecione o produto'"
+                [settings]="dropdownSettingsSigle"
+                [data]="listaProduto"
+                formControlName="descricaoProduto"
+              ></ng-multiselect-dropdown>
+          </div>
+          <div class="form-group mt-3">
+            <label for="fornecedor">Seleciona um fornecedor</label>
+            <ng-multiselect-dropdown
+              name='fornecedor'
+              [placeholder]="'Selecione o fornecedor'"
+              [settings]="dropdownSettingsSigle"
+              [data]="listaFornecedor"
+              formControlName="fornecedor"
+            ></ng-multiselect-dropdown>
+          </div>
+          <div class="form-group mt-3">
+            <label for="quantidade">Quantidade</label>
+            <input class="form-control" type="number" name="quantidade" id="quantidade" min="1"  placeholder="Digite a quantidade" formControlName = "quantidade">
+          </div>
+          <div class="form-group mt-3">
+            <label for="unidadeMedida">Unidade de medida</label>
+            <ng-multiselect-dropdown
+              name='unidadeMedida'
+              [placeholder]="'Selecione uma unidade de medida'"
+              [settings]="dropdownSettingsSigle"
+              [data]="listaUnidadeMedida"
+              formControlName="unidadeMedida"
+            ></ng-multiselect-dropdown>
+          </div>
             <div class="d-flex justify-content-center">
-                <!-- <button type="submit" class="btn btn-danger space" routerLink='/home'>Cancelar</button> -->
-                <button type="submit" class="btn btn-success space" (click)='cadastrar()' >Adicionar</button>
+              <!-- <button type="submit" class="btn btn-danger space" routerLink='/home'>Cancelar</button> -->
+              <button type="submit" class="btn btn-primary space" (click)='adicionar()'>Adicionar</button>
             </div>
         </form>
+      </div>
+      <div class="col-md-12" >
+        <app-tabela [data]="data" [config]="configTable" (deleteItem)="deletarItem($event)"></app-tabela>
+      </div>
+      <div class="col-md-12" >
+        <button type="button" class="btn btn-success space" (click)='salvar()'>Salvar</button>
+      </div>
     </div>
   </div>
 </div>

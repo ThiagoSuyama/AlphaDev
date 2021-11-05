@@ -20,11 +20,4 @@ export class CabecalhoComponent  {
       this.router.navigate(['']);
     }
 
-    tse(){
-      console.log('estar logado',this.auth.estaLogado())
-      this.user$.subscribe(data=>{
-        console.log('data', data)
-      })
-    }
-
 }

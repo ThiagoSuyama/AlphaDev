@@ -11,7 +11,7 @@
     </a>
     <app-menu #menu>
       <div *ngIf="user$ | async as user">
-      <div *ngIf="user.name; else login">
+      <div *ngIf="user.nome; else login">
         <ul class="nav flex-column">
           <li class="nav-item active">
             <a class="nav-link" routerLink='/home'>Home</a>
@@ -38,7 +38,7 @@
             <a class="nav-link" routerLink='/saida'>Saída de Estoque</a>
           </li>          
           <li>  
-            <a class="nav-link" (click)="logout()">Logout</a>
+            <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
           </li>
         </ul>
       </div>
@@ -46,10 +46,10 @@
     </app-menu>
 
     <div *ngIf="user$ | async as user">
-      <div *ngIf="user.name; else login">
+      <div *ngIf="user.nome; else login">
         <i class="fa fa-user-circle mr-1" style="margin-right: 2px;"> </i>
-        <a class="mr-1" style="margin-right: 10px;">{{ user.name }}</a>
-        <a (click)="logout()" style="margin-right: 30px;">Logout</a>
+        <a class="mr-1" style="margin-right: 10px;">{{ user.nome }}</a>
+        <a (click)="logout()" style="margin-right: 30px;cursor: pointer;">Logout</a>
       </div>
     </div>
   </nav>

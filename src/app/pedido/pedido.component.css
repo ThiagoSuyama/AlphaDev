@@ -1,8 +1,10 @@
-/* #bg{
+#bg{
   background-color: rgb(240, 142, 112);
+  min-height: 789px;
+
 }
 
-#img-bg{
+/* #img-bg{
   background-image: url('../../assets/imagens/Sushi-cook-amico.png');
 
   min-height: 789px;

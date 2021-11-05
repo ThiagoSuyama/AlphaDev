@@ -20,6 +20,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PedidoComponent } from './pedido/pedido.component';
 import { RecebidosComponent } from './recebidos/recebidos.component';
 import { SaidaComponent } from './saida/saida.component';
+import { TabelaComponent } from './componentes/tabela/tabela.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { SaidaComponent } from './saida/saida.component';
     PedidoComponent,
     RecebidosComponent,
     SaidaComponent,
+    TabelaComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { SaidaComponent } from './saida/saida.component';
     NgxMaskModule.forRoot(),
     BrowserAnimationsModule, 
     ToastrModule.forRoot(), 
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    MatTableModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

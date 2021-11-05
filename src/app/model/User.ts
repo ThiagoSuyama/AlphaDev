@@ -10,7 +10,6 @@ export class User{
 export interface IUser{
      id?: number
      nome?: string
-     name?: string //teste
      sobrenome?: string
      usuario?: string
      senha?: string

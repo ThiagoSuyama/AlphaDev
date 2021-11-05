@@ -51,16 +51,11 @@ export class AuthService {
   }
   entrar(usuario: string, senha:string): Observable<HttpResponse<any>> {
     return this.http.post(
-      // `${API}/usuarios`,
-      `${API}/user/login`,
+      `${API}/usuarios`,
       {
-        userName: usuario,
-        password: senha,
+        usuario,
+        senha,
       },
-      // {
-      //   usuario,
-      //   senha,
-      // },
       { observe: 'response' }
       ).pipe(
         tap((res)=>{
@@ -71,7 +66,7 @@ export class AuthService {
   }
 
   cadastrar(user: User): Observable<User>{
-    return this.http.post<User>('http://localhost:8080/usuarios', user)
+    return this.http.post<User>(`${API}/usuarios`, user)
   }
  
 }
