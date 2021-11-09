@@ -12,6 +12,13 @@
     background-size: cover;
 }
 
+.fundoForm{
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 .space{
     margin: 30px;
 }

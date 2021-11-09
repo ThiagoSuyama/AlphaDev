@@ -1,6 +1,9 @@
+import { EstoqueComponent } from './estoque/estoque.component';
+import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { PedidoComponent } from './pedido/pedido.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { HomeComponent } from './home/home.component';
@@ -13,14 +16,33 @@ const routes: Routes = [
 
   {path: '', redirectTo: 'entrar', pathMatch: 'full'},
 
-  {path: 'entrar', component: EntrarComponent},
-  {path: 'cadastrar', component: CadastrarComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'fornecedor', component: FornecedorComponent},
-  {path: 'produto', component: ProdutoComponent},
-  {path: 'pedido', component: PedidoComponent},
-  {path: 'recebidos', component: RecebidosComponent},
-  {path: 'saida', component: SaidaComponent}
+  {path: 'entrar', component: EntrarComponent,
+    canActivate:[LoginGuard]
+  },
+  {path: 'cadastrar', component: CadastrarComponent, 
+    canActivate:[AuthGuard]
+  },
+  {path: 'home', component: HomeComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'fornecedor', component: FornecedorComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'produto', component: ProdutoComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'pedido', component: PedidoComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'recebidos', component: RecebidosComponent, 
+    canActivate:[AuthGuard]
+  },
+  {path: 'saida', component: SaidaComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'estoque', component: EstoqueComponent,
+    canActivate:[AuthGuard]
+  }
 
 ];
 

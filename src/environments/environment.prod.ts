@@ -1,8 +1,5 @@
 export const environment = {
   production: true,
-  token: '',
-  nome: '',
-  id: 0,
-  foto: ''
+  apiURL: 'http://localhost:3000',
   
 };

@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { RodapeModule } from './componentes/rodape/rodape.module';
 import { CabecalhoModule } from './componentes/cabecalho/cabecalho.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +20,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PedidoComponent } from './pedido/pedido.component';
 import { RecebidosComponent } from './recebidos/recebidos.component';
 import { SaidaComponent } from './saida/saida.component';
+import { TabelaComponent } from './componentes/tabela/tabela.component';
+import {MatTableModule} from '@angular/material/table';
+import { EstoqueComponent } from './estoque/estoque.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,8 @@ import { SaidaComponent } from './saida/saida.component';
     PedidoComponent,
     RecebidosComponent,
     SaidaComponent,
+    TabelaComponent,
+    EstoqueComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +48,10 @@ import { SaidaComponent } from './saida/saida.component';
     NgxMaskModule.forRoot(),
     BrowserAnimationsModule, 
     ToastrModule.forRoot(), 
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    MatTableModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

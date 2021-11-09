@@ -1,0 +1,24 @@
+#bg{
+  background-color: rgb(240, 142, 112);
+}
+
+#img-bg{
+  background-image: url('../../assets/imagens/Checklist-amico.png');
+
+  min-height: 789px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fundoForm{
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.space{
+  margin: 30px;
+}
