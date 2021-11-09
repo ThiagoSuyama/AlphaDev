@@ -1,3 +1,5 @@
+import { FornecedorService } from './../service/fornecedor.service';
+import { ProdutoService } from './../service/produto.service';
 import { PedidoService } from './../service/pedido.service';
 import { IPedido } from './../model/Pedido';
 import { DataTableItem, DataTableConfig } from './../componentes/tabela/tabela.component';
@@ -38,6 +40,8 @@ export class PedidoComponent implements OnInit {
     private fb: FormBuilder,
     private alert : ToastrService,
     private pedidoService : PedidoService,
+    private produtoService : ProdutoService,
+    private fornecedorService : FornecedorService,
 
   ) { 
     this.formPedido = this.fb.group(this.formFields)
@@ -59,7 +63,7 @@ export class PedidoComponent implements OnInit {
       },
       {
         var: 'quantidade',
-        label: 'Fornecedor',
+        label: 'Quantidade',
         type: 'text'
       },
       {
@@ -72,18 +76,49 @@ export class PedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.configuracaoDoCampoSelect()
-    this.listaProduto=[
-      {id:1, text:'arroz'},
-      {id:2, text:'teste1'},
-      {id:3, text:'teset2'},
-    ]
-    this.listaFornecedor=[
-      {id:1, text: 'camil'},
-      {id:2, text: 'test1'},
-      {id:3, text: 'teste3'}
-    ]
+    this.buscarTodosProdutos()
+    this.buscarTodosFornecedor()
+    // this.listaProduto=[
+    //   {id:1, text:'arroz'},
+    //   {id:2, text:'teste1'},
+    //   {id:3, text:'teset2'},
+    // ]
+    // this.listaFornecedor=[
+    //   {id:1, text: 'camil'},
+    //   {id:2, text: 'test1'},
+    //   {id:3, text: 'teste3'}
+    // ]
   }
 
+  buscarTodosProdutos(){
+    this.produtoService.buscarTodosProdutos().subscribe((data)=>{
+      data.forEach(produto => {
+        const lista: {id:any, text:string} ={
+          id: produto.id,
+          text: produto.nomeProduto
+        }
+        this.listaProduto.push(lista);
+      })
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
+    })
+  }
+
+  buscarTodosFornecedor(){
+    this.fornecedorService.buscarTodosFornecedor().subscribe((data)=>{
+      data.forEach(fornecedor =>{
+        const lista: {id:any, text:string} ={
+          id: fornecedor.id,
+          text: fornecedor.nomeFornecedor
+        }
+        this.listaFornecedor.push(lista);
+      })
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
+    })
+  }
   atualizarListaTabela(){
     this.data = DataTableItem.collection(this.lista);
   }
@@ -104,7 +139,6 @@ export class PedidoComponent implements OnInit {
       fornecedor: form.fornecedor && form.fornecedor.length ? form.fornecedor[0].text : '',
       quantidade: form.quantidade ?? 0,
       unidadeMedida: form.unidadeMedida && form.unidadeMedida.length ? form.unidadeMedida[0].text : '',
-      isEditable: false,
       isViewItem: false,
       isDeletable: true,
     }
@@ -138,6 +172,7 @@ export class PedidoComponent implements OnInit {
     const body = this.lista
     this.pedidoService.gerarPedido(body).subscribe((data)=>{
       console.log('data',data)
+      this.formPedido.reset();
       this.alert.success('Pedido Gerado','Sucesso!')
     }, error =>{
       console.warn('error', error)

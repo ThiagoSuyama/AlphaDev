@@ -1,3 +1,4 @@
+import { EstoqueComponent } from './estoque/estoque.component';
 import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { PedidoComponent } from './pedido/pedido.component';
@@ -37,6 +38,9 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {path: 'saida', component: SaidaComponent,
+    canActivate:[AuthGuard]
+  },
+  {path: 'estoque', component: EstoqueComponent,
     canActivate:[AuthGuard]
   }
 

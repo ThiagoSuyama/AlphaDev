@@ -22,6 +22,7 @@ import { RecebidosComponent } from './recebidos/recebidos.component';
 import { SaidaComponent } from './saida/saida.component';
 import { TabelaComponent } from './componentes/tabela/tabela.component';
 import {MatTableModule} from '@angular/material/table';
+import { EstoqueComponent } from './estoque/estoque.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import {MatTableModule} from '@angular/material/table';
     RecebidosComponent,
     SaidaComponent,
     TabelaComponent,
+    EstoqueComponent,
   ],
   imports: [
     BrowserModule,

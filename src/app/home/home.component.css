@@ -12,3 +12,10 @@
     background-size: cover;
     opacity: 0.3;
 }
+
+.fundoForm{
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

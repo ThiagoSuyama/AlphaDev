@@ -1,6 +1,10 @@
+import { RecebidosService } from './../service/recebidos.service';
+import { IPedido } from './../model/Pedido';
+import { PedidoService } from './../service/pedido.service';
+import { DataTableConfig, DataTableItem } from './../componentes/tabela/tabela.component';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recebidos',
@@ -8,69 +12,159 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./recebidos.component.css']
 })
 export class RecebidosComponent implements OnInit {
-  formRecebidos : FormGroup;
-  formFields : Record<string, unknown> ={
-    numeroPedido: [null],
-    descricaoProduto: [null],
-    quantidade:[null],
-    data:[null],
-    validade:[null],
-  }
 
-  dropdownSettingsSigle: any = {};
-  dropdownSettingsMulti: any = {};
-  closeDropdownSelection=false;
+  listaDePedidos: DataTableConfig;
+  dadosDoPedido: DataTableItem[];
 
-  listaProduto!:{id:any, text:string}[]
-  listaPedido!:{id:any, text:string}[]
+  listaDeProdutos: DataTableConfig;
+  dadosDosItens: DataTableItem[];
+
+  numeroPedido = '';
+  item :IPedido[];
 
   constructor(
-    private fb: FormBuilder,
-    private alert : ToastrService,
+    private alert: ToastrService,
+    private pedidoService: PedidoService,
+    private recebidoService: RecebidosService,
 
-  )
+  ) {
 
-  { 
-    this.formRecebidos = this.fb.group(this.formFields)
+    this.listaDePedidos = DataTableConfig.default([
+      {
+        var: 'id',
+        label: 'N* do Pedido',
+        type: 'text'
+      },
+      {
+        var: 'fornecedor',
+        label: 'Fornecedor',
+        type: 'text'
+      }
+    ], 'id');
+
+    this.listaDeProdutos = DataTableConfig.default([
+      {
+        var: 'id',
+        label: 'N*',
+        type: 'text'
+      },
+      {
+        var: 'descricaoProduto',
+        label: 'Produto',
+        type: 'text'
+      },
+      {
+        var: 'fornecedor',
+        label: 'Fornecedor',
+        type: 'text'
+      },
+      {
+        var: 'quantidade',
+        label: 'Quantidade',
+        type: 'text'
+      },
+      {
+        var: 'unidadeMedida',
+        label: 'Unidade de Medida',
+        type: 'text'
+      },
+    ], 'id');
+    this.listaDeProdutos.isEditable = false;
+    this.listaDeProdutos.isDeletable = false;
   }
 
-  
+
 
   ngOnInit(): void {
-    this.configuracaoDoCampoSelect()
-    this.listaProduto=[
-      {id:1, text:'arroz'},
-      {id:2, text:'teste1'},
-      {id:3, text:'teset2'},
-    ]
 
-    this.listaPedido=[
-      {id:1, text:'arroz'},
-      {id:2, text:'teste1'},
-      {id:3, text:'teset2'},
-    ]
+    this.buscarTodosPedidos();
+
+    // const listaTeste = [
+    //   {
+    //     id: 1,
+    //     fornecedor: 'Atacadão',
+    //     isViewItem: true,
+    //   },
+    //   {
+    //     id: 2,
+    //     fornecedor: 'Mercado',
+    //     isViewItem: true,
+
+    //   },
+    //   {
+    //     id: 3,
+    //     fornecedor: 'Loja 1',
+    //     isViewItem: true,
+
+    //   },
+    //   {
+    //     id: 4,
+    //     fornecedor: 'Mergado 2',
+    //     isViewItem: true,
+
+    //   },
+    // ]
+    // this.dadosDoPedido = DataTableItem.collection(listaTeste)
   }
 
-  cadastrar(): void{
-    const body = this.formRecebidos.getRawValue()
-    console.log('body', body)
+
+  buscarTodosPedidos(){
+    this.pedidoService.buscarTodosPedido().subscribe((data)=>{
+      if(Array.isArray(data) && data.length){
+        this.dadosDoPedido = DataTableItem.collection(data)
+      }
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
+    })
   }
 
-  configuracaoDoCampoSelect(){
-    this.dropdownSettingsSigle = {
-      singleSelection: true,
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      allowSearchFilter: true,
-      closeDropDownOnSelection: this.closeDropdownSelection
-    };
-    this.dropdownSettingsMulti = {
-      singleSelection: false,
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      allowSearchFilter: true,
-      closeDropDownOnSelection: this.closeDropdownSelection
-    };
+  visualizarPedido(pedido: any) {
+    this.numeroPedido = pedido.id
+    this.pedidoService.buscarUmPedido(`${this.numeroPedido}`).subscribe((data)=>{
+      if(Array.isArray(data) && data.length){
+        this.item = data;
+        this.dadosDosItens = DataTableItem.collection(data)
+      }
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
+    })
+    // const itemTeste = [
+    //   {
+    //     id: 1,
+    //     descricaoProduto: 'Arroz',
+    //     fornecedor: 'Camil',
+    //     quantidade: 20,
+    //     unidadeMedida: 'KG'
+    //   },
+    //   {
+    //     id: 2,
+    //     descricaoProduto: 'Feijão',
+    //     fornecedor: 'Kicaldo',
+    //     quantidade: 20,
+    //     unidadeMedida: 'KG'
+    //   },
+    //   {
+    //     id: 3,
+    //     descricaoProduto: 'Nori Alga Marinha',
+    //     fornecedor: 'Sidchen',
+    //     quantidade: 20,
+    //     unidadeMedida: 'UN'
+    //   },
+    // ]
+    // this.dadosDosItens = DataTableItem.collection(itemTeste)
   }
 
+  receberPedido() {
+    this.recebidoService.receberPedido(`${this.numeroPedido}`,this.item).subscribe((data)=>{
+      console.log('data',data)
+      this.alert.success('Pedido Recebido','Sucesso!')
+      this.item =[];
+      this.numeroPedido ='';
+    }, error =>{
+      console.warn('error', error)
+      this.alert.error('Tente novamente','Falha')
+    })
+  }
 }

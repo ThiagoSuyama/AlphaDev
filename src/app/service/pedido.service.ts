@@ -17,5 +17,13 @@ export class PedidoService {
     return this.http.post<IPedido>(`${API}/pedido`, listaPedido)
   }
 
+  buscarTodosPedido(): Observable<[IPedido]>{
+    return this.http.get<[IPedido]>(`${API}/pedido`,)
+  }
+
+  buscarUmPedido(idPedido: string): Observable<[IPedido]>{
+    return this.http.get<[IPedido]>(`${API}/pedido/${idPedido}`,)
+  }
+
 }
 

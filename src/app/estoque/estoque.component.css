@@ -1,11 +1,9 @@
 #bg{
   background-color: rgb(240, 142, 112);
-  /* min-height: 789px; */
-
 }
 
 #img-bg{
-  background-image: url('../../assets/imagens/Sushi-cook-bro.png');
+  background-image: url('../../assets/imagens/Checklist-amico.png');
 
   min-height: 789px;
 
@@ -19,10 +17,6 @@
   border-radius: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
-}
-
-.marginTop{
-  margin-top: 30px;
 }
 
 .space{

@@ -33,6 +33,8 @@ export class ProdutoComponent implements OnInit {
   cadastrar(): void{
     const body:IProduto  = Object.assign({}, this.formProduto.value)
     this.produtoService.cadastrar(body).subscribe((data:IProduto)=>{
+      this.formProduto.reset()
+      console.log('sucesso', data)
       this.alert.success('Produto Cadastrado','Sucesso!')
     }, error =>{
       console.warn('error', error)

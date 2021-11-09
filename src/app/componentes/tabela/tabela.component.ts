@@ -8,9 +8,9 @@ export interface Actions < T > {
 
 export class DataTableItem {
   [key: string]: any;
-  isEditable = true;
+  isEditable = false;
   isDeletable = false;
-  isViewItem = true;
+  isViewItem = false;
   isActivatable = true;
   isDraggable = false;
   isSelectable = false;
