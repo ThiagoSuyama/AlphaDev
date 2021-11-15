@@ -68,8 +68,20 @@ export class RecebidosComponent implements OnInit {
         label: 'Unidade de Medida',
         type: 'text'
       },
+      {
+        var: 'DataDeValidade',
+        label: 'Data de Validade',
+        type: 'datePicker'
+      },
+      {
+        var: 'quantidadeRecebida',
+        label: 'Quantidade Recebida',
+        type: 'input'
+      },
+      
+      
     ], 'id');
-    this.listaDeProdutos.isEditable = false;
+    this.listaDeProdutos.isEditable = true;
     this.listaDeProdutos.isDeletable = false;
   }
 
@@ -79,32 +91,32 @@ export class RecebidosComponent implements OnInit {
 
     this.buscarTodosPedidos();
 
-    // const listaTeste = [
-    //   {
-    //     id: 1,
-    //     fornecedor: 'Atacadão',
-    //     isViewItem: true,
-    //   },
-    //   {
-    //     id: 2,
-    //     fornecedor: 'Mercado',
-    //     isViewItem: true,
+    const listaTeste = [
+      {
+        id: 1,
+        fornecedor: 'Atacadão',
+        isViewItem: true,
+      },
+      {
+        id: 2,
+        fornecedor: 'Mercado',
+        isViewItem: true,
 
-    //   },
-    //   {
-    //     id: 3,
-    //     fornecedor: 'Loja 1',
-    //     isViewItem: true,
+      },
+      {
+        id: 3,
+        fornecedor: 'Loja 1',
+        isViewItem: true,
 
-    //   },
-    //   {
-    //     id: 4,
-    //     fornecedor: 'Mergado 2',
-    //     isViewItem: true,
+      },
+      {
+        id: 4,
+        fornecedor: 'Mergado 2',
+        isViewItem: true,
 
-    //   },
-    // ]
-    // this.dadosDoPedido = DataTableItem.collection(listaTeste)
+      },
+    ]
+    this.dadosDoPedido = DataTableItem.collection(listaTeste)
   }
 
 
@@ -130,33 +142,47 @@ export class RecebidosComponent implements OnInit {
       console.warn('error', error)
       this.alert.error('Tente novamente','Falha')
     })
-    // const itemTeste = [
-    //   {
-    //     id: 1,
-    //     descricaoProduto: 'Arroz',
-    //     fornecedor: 'Camil',
-    //     quantidade: 20,
-    //     unidadeMedida: 'KG'
-    //   },
-    //   {
-    //     id: 2,
-    //     descricaoProduto: 'Feijão',
-    //     fornecedor: 'Kicaldo',
-    //     quantidade: 20,
-    //     unidadeMedida: 'KG'
-    //   },
-    //   {
-    //     id: 3,
-    //     descricaoProduto: 'Nori Alga Marinha',
-    //     fornecedor: 'Sidchen',
-    //     quantidade: 20,
-    //     unidadeMedida: 'UN'
-    //   },
-    // ]
-    // this.dadosDosItens = DataTableItem.collection(itemTeste)
+    const itemTeste = [
+      {
+        id: 1,
+        descricaoProduto: 'Arroz',
+        fornecedor: 'Camil',
+        quantidade: 20,
+        unidadeMedida: 'KG',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
+      },
+      {
+        id: 2,
+        descricaoProduto: 'Feijão',
+        fornecedor: 'Kicaldo',
+        quantidade: 20,
+        unidadeMedida: 'KG',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
+
+      },
+      {
+        id: 3,
+        descricaoProduto: 'Nori Alga Marinha',
+        fornecedor: 'Sidchen',
+        quantidade: 20,
+        unidadeMedida: 'UN',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
+
+      },
+    ]
+    this.dadosDosItens = DataTableItem.collection(itemTeste)
   }
 
   receberPedido() {
+    console.log('this.item', this.item)
+    console.log('this.dadosDosItens', this.dadosDosItens)
+
     this.recebidoService.receberPedido(`${this.numeroPedido}`,this.item).subscribe((data)=>{
       console.log('data',data)
       this.alert.success('Pedido Recebido','Sucesso!')
@@ -166,5 +192,11 @@ export class RecebidosComponent implements OnInit {
       console.warn('error', error)
       this.alert.error('Tente novamente','Falha')
     })
+  }
+
+  confirmarItem(event:Event){
+    console.log('event', event)
+    console.log('this.item', this.item)
+    console.log('this.dadosDosItens', this.dadosDosItens)
   }
 }
