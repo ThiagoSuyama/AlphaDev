@@ -2,7 +2,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RodapeModule } from './componentes/rodape/rodape.module';
 import { CabecalhoModule } from './componentes/cabecalho/cabecalho.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,14 @@ import { SaidaComponent } from './saida/saida.component';
 import { TabelaComponent } from './componentes/tabela/tabela.component';
 import {MatTableModule} from '@angular/material/table';
 import { EstoqueComponent } from './estoque/estoque.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { InputFieldComponent } from './componentes/input-field/input-field.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +44,7 @@ import { EstoqueComponent } from './estoque/estoque.component';
     SaidaComponent,
     TabelaComponent,
     EstoqueComponent,
+    InputFieldComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,16 @@ import { EstoqueComponent } from './estoque/estoque.component';
     BrowserAnimationsModule, 
     ToastrModule.forRoot(), 
     NgMultiSelectDropDownModule.forRoot(),
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgbModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
