@@ -1,44 +1,50 @@
 <div class="card-body p-0">
-  <table class="table table-responsive-lg">
-      <thead class="thead-light">
-          <tr>
-              <th *ngIf="config.isSelectable">&nbsp;</th>
-              <th *ngFor="let header of config.headers">{{header.label}}</th>
-              <th *ngIf="config.showStatus">Publicado/Ativo</th>
-              <th *ngIf="config.isDeletable || config.isEditable">Funções</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let row of items_filtered | slice:(page-1)*perPage:page*perPage;let index = index">
-              <th *ngIf="config.isSelectable">
-                  <div class="custom-control custom-checkbox">
-                      <input [id]="'select-' + index" type="checkbox" class="custom-control-input" [checked]="selectAll" (click)="selectableItem.emit(row)">
-                      <label [attr.for]="'select-' + index" class="custom-control-label">&nbsp;</label>
-                  </div>
-              </th>
-              <td *ngFor="let col of config.headers">
-                  <img *ngIf="col.type === 'cover' " class="img-fluid" [src]="row[col.var]" width="10%" />
-                  <img *ngIf="col.type === 'asset' && row[col.var]?.src" class="img-thumbnail" [src]="row[col.var]?.src?.small" />
-                  <img *ngIf="col.type === 'image'" class="img-thumbnail" [src]="row[col.var]" />
-                  <span *ngIf="!col.type || col.type === 'text'">{{row[col.var]}}</span>
-                  <span *ngIf="col.type === 'date'">{{row[col.var] | date: 'dd/MM/yyyy h:mm a'}}</span>
-                  <span *ngIf="col.type === 'dateOnly'">{{row[col.var] | date: 'dd/MM/yyyy'}}</span>
-                  <span *ngIf="col.type === 'boolean' && row[col.var]"><i class="mdi mdi-check"></i></span>
-                  <span *ngIf="col.type === 'boolean' && !row[col.var]"><i class="mdi mdi-close"></i></span>
-              </td>
-              <td *ngIf="config.showStatus">
-                  <button *ngIf="row.active == true || row.public == true" class="btn btn-link" (click)="activateItem.emit(row)"><i class="fas fa-toggle-on" placement="top" ngbTooltip="Clique para Desativar"></i></button>
-                  <button *ngIf="row.active == false || row.public == false" class="btn btn-link" (click)="activateItem.emit(row)"><i class="fas fa-toggle-off" placement="top" ngbTooltip="Clique para Ativar"></i></button>
-              </td>
-              <td *ngIf="config.isDeletable || config.isEditable || config.isViewItem">
-                  <button *ngIf="row.posts_id && !row.speach && !row.src_speach" class="btn btn-link" (click)="speachItem.emit(row)"><i class="fa fa-volume-up" placement="top" ngbTooltip="Criar versão de áudio"></i></button>
-                  <button *ngIf="row.isViewItem" class="btn btn-link" (click)="viewItem.emit(row)"><i class="fa fa-eye" placement="top" ngbTooltip="Visualizar"></i></button>
-                  <button *ngIf="row.isEditable" class="btn btn-link" (click)="editItem.emit(row)"><i class="fa fa-edit" placement="top" ngbTooltip="Editar"></i></button>
-                  <button *ngIf="row.isDeletable" class="btn btn-link" (click)="deleteItem.emit(row)"><i class="fa fa-trash" placement="top" ngbTooltip="Apagar"></i></button>
-                  <button *ngIf="row.isDraggable" class="btn btn-link" (click)="moveUp.emit(row)"><i class="fa fa-arrow-up" placement="top" ngbTooltip="Move up"></i></button>
-                  <button *ngIf="row.isDraggable" class="btn btn-link" (click)="moveDown.emit(row)"><i class="fa fa-arrow-down" placement="bottom" ngbTooltip="Move down"></i></button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+  <form #elementsForm="ngForm">
+      <table class="table table-responsive-lg">
+          <thead class="thead-light">
+              <tr>
+                  <th *ngIf="config.isSelectable">&nbsp;</th>
+                  <th *ngFor="let header of config.headers">{{header.label}}</th>
+                  <th *ngIf="config.showStatus">Publicado/Ativo</th>
+                  <th *ngIf="config.isDeletable || config.isEditable">Funções</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of items_filtered | slice:(page-1)*perPage:page*perPage;let index = index">
+                  <th *ngIf="config.isSelectable">
+                      <div class="custom-control custom-checkbox">
+                          <input [id]="'select-' + index" type="checkbox" class="custom-control-input" [checked]="selectAll" (click)="selectableItem.emit(row)">
+                          <label [attr.for]="'select-' + index" class="custom-control-label">&nbsp;</label>
+                      </div>
+                  </th>
+                  <td *ngFor="let col of config.headers">
+                      <img *ngIf="col.type === 'cover' " class="img-fluid" [src]="row[col.var]" width="10%" />
+                      <img *ngIf="col.type === 'asset' && row[col.var]?.src" class="img-thumbnail" [src]="row[col.var]?.src?.small" />
+                      <img *ngIf="col.type === 'image'" class="img-thumbnail" [src]="row[col.var]" />
+                      <span *ngIf="!col.type || col.type === 'text'">{{row[col.var]}}</span>
+                      <span *ngIf="col.type === 'date'">{{row[col.var] | date: 'dd/MM/yyyy h:mm a'}}</span>
+                      <span *ngIf="col.type === 'dateOnly'">{{row[col.var] | date: 'dd/MM/yyyy'}}</span>
+                      <span *ngIf="col.type === 'boolean' && row[col.var]"><i class="mdi mdi-check"></i></span>
+                      <span *ngIf="col.type === 'boolean' && !row[col.var]"><i class="mdi mdi-close"></i></span>
+                      <app-input-field  *ngIf="col.type === 'datePicker'" id="'date'+index" type="date"  [cssInput]="'w-100'" [(ngModel)]="items_filtered[index].DataDeValidade" [ngModelOptions]="{standalone: true}"></app-input-field>
+                      <app-input-field  *ngIf="col.type === 'input'" id="index" type="number" [cssInput]="'w-50'" [(ngModel)]="items_filtered[index].quantidadeRecebida" [ngModelOptions]="{standalone: true}"></app-input-field>
+                        
+                  </td>
+                  <td *ngIf="config.showStatus">
+                      <button *ngIf="row.active == true || row.public == true" class="btn btn-link" (click)="activateItem.emit(row)"><i class="fas fa-toggle-on" placement="top" ngbTooltip="Clique para Desativar"></i></button>
+                      <button *ngIf="row.active == false || row.public == false" class="btn btn-link" (click)="activateItem.emit(row)"><i class="fas fa-toggle-off" placement="top" ngbTooltip="Clique para Ativar"></i></button>
+                  </td>
+                  <td *ngIf="config.isDeletable || config.isEditable || config.isViewItem">
+                      <button *ngIf="row.posts_id && !row.speach && !row.src_speach" class="btn btn-link" (click)="speachItem.emit(row)"><i class="fa fa-volume-up" placement="top" ngbTooltip="Criar versão de áudio"></i></button>
+                      <button *ngIf="row.isViewItem" class="btn btn-link" (click)="viewItem.emit(row)"><i class="fa fa-eye" placement="top" ngbTooltip="Visualizar"></i></button>
+                      <button *ngIf="row.isEditable" class="btn btn-link" (click)="editItem.emit(row)"><i class="fa fa-edit" placement="top" ngbTooltip="Editar"></i></button>
+                      <button *ngIf="row.isDeletable" class="btn btn-link" (click)="deleteItem.emit(row)"><i class="fa fa-trash" placement="top" ngbTooltip="Apagar"></i></button>
+                      <button *ngIf="row.isDraggable" class="btn btn-link" (click)="moveUp.emit(row)"><i class="fa fa-arrow-up" placement="top" ngbTooltip="Move up"></i></button>
+                      <button *ngIf="row.isDraggable" class="btn btn-link" (click)="moveDown.emit(row)"><i class="fa fa-arrow-down" placement="bottom" ngbTooltip="Move down"></i></button>
+                      <button *ngIf="row.isConfirmItem" class="btn btn-link" (click)="confirmarItemEvent(row)"><i class="fa fa-check-circle-o" placement="bottom" ngbTooltip="Confirmar Item"></i></button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </form>
 </div>
