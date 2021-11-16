@@ -91,32 +91,32 @@ export class RecebidosComponent implements OnInit {
 
     this.buscarTodosPedidos();
 
-    // const listaTeste = [
-    //   {
-    //     id: 1,
-    //     fornecedor: 'Atacadão',
-    //     isViewItem: true,
-    //   },
-    //   {
-    //     id: 2,
-    //     fornecedor: 'Mercado',
-    //     isViewItem: true,
+    const listaTeste = [
+      {
+        id: 1,
+        fornecedor: 'Atacadão',
+        isViewItem: true,
+      },
+      {
+        id: 2,
+        fornecedor: 'Mercado',
+        isViewItem: true,
 
-    //   },
-    //   {
-    //     id: 3,
-    //     fornecedor: 'Loja 1',
-    //     isViewItem: true,
+      },
+      {
+        id: 3,
+        fornecedor: 'Loja 1',
+        isViewItem: true,
 
-    //   },
-    //   {
-    //     id: 4,
-    //     fornecedor: 'Mergado 2',
-    //     isViewItem: true,
+      },
+      {
+        id: 4,
+        fornecedor: 'Mergado 2',
+        isViewItem: true,
 
-    //   },
-    // ]
-    // this.dadosDoPedido = DataTableItem.collection(listaTeste)
+      },
+    ]
+    this.dadosDoPedido = DataTableItem.collection(listaTeste)
   }
 
 
@@ -142,41 +142,41 @@ export class RecebidosComponent implements OnInit {
       console.warn('error', error)
       this.alert.error('Tente novamente','Falha')
     })
-    // const itemTeste = [
-    //   {
-    //     id: 1,
-    //     descricaoProduto: 'Arroz',
-    //     fornecedor: 'Camil',
-    //     quantidade: 20,
-    //     unidadeMedida: 'KG',
-    //     DataDeValidade: '',
-    //     quantidadeRecebida:'',
-    //     isConfirmItem:true,
-    //   },
-    //   {
-    //     id: 2,
-    //     descricaoProduto: 'Feijão',
-    //     fornecedor: 'Kicaldo',
-    //     quantidade: 20,
-    //     unidadeMedida: 'KG',
-    //     DataDeValidade: '',
-    //     quantidadeRecebida:'',
-    //     isConfirmItem:true,
+    const itemTeste = [
+      {
+        id: 1,
+        descricaoProduto: 'Arroz',
+        fornecedor: 'Camil',
+        quantidade: 20,
+        unidadeMedida: 'KG',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
+      },
+      {
+        id: 2,
+        descricaoProduto: 'Feijão',
+        fornecedor: 'Kicaldo',
+        quantidade: 20,
+        unidadeMedida: 'KG',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
 
-    //   },
-    //   {
-    //     id: 3,
-    //     descricaoProduto: 'Nori Alga Marinha',
-    //     fornecedor: 'Sidchen',
-    //     quantidade: 20,
-    //     unidadeMedida: 'UN',
-    //     DataDeValidade: '',
-    //     quantidadeRecebida:'',
-    //     isConfirmItem:true,
+      },
+      {
+        id: 3,
+        descricaoProduto: 'Nori Alga Marinha',
+        fornecedor: 'Sidchen',
+        quantidade: 20,
+        unidadeMedida: 'UN',
+        DataDeValidade: '',
+        quantidadeRecebida:'',
+        isConfirmItem:true,
 
-    //   },
-    // ]
-    // this.dadosDosItens = DataTableItem.collection(itemTeste)
+      },
+    ]
+    this.dadosDosItens = DataTableItem.collection(itemTeste)
   }
 
   receberPedido() {

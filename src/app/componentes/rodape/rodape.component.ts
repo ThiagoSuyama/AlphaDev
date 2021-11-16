@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as moment from 'moment/moment';
+moment.locale('pt-br');
 @Component({
   selector: 'app-rodape',
   templateUrl: './rodape.component.html',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RodapeComponent implements OnInit {
 
-  constructor() { }
+  today: string;
+  constructor() {
+    this.today = moment().format('LL')
+   }
 
   ngOnInit(): void {
   }
